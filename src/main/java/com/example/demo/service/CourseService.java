@@ -26,4 +26,8 @@ public class CourseService {
         return courseRepository.findCourseByName(input);
     }
 
+    public int[] getTwoSum(String target){
+        return courseRepository.twoSum(target);
+    }
+
 }

@@ -31,6 +31,14 @@ public class CourseController {
         return new ResponseEntity<>(allCourses,HttpStatus.OK); // 我返回结果给你
     }
 
+    @GetMapping(path="/twoSum/{inputString}",produces = "application/json")
+        public HttpEntity getTwoSum(@PathVariable("inputString") String inputString){
+            int[] result=courseService.getTwoSum(inputString);
+
+            return new ResponseEntity<>(result,HttpStatus.OK);
+        }
+
+
 //    @GetMapping(path = "/api/course/findAllCourses", produces = "application/json")
 //    public HttpEntity<List<CourseDto>> findAllCourses(){
 //        List<CourseDto> allCourses = courseService.findAllCourses();

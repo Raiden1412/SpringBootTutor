@@ -30,6 +30,7 @@ public class CourseServiceUnitTest {
 
         List<Course> result = courseService.findAllCourses();
 
+
         assertTrue(result.isEmpty());
     }
 
