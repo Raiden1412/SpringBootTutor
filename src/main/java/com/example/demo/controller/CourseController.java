@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.modal.Course;
+import com.example.demo.modal.TwoSum;
 import com.example.demo.modal.dto.CourseDto;
 import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 // single function interface
@@ -31,12 +30,20 @@ public class CourseController {
         return new ResponseEntity<>(allCourses,HttpStatus.OK); // 我返回结果给你
     }
 
-    @GetMapping(path="/twoSum/{inputString}",produces = "application/json")
+    @GetMapping(path="/getTwoSum/{inputString}",produces = "application/json")
         public HttpEntity getTwoSum(@PathVariable("inputString") String inputString){
             int[] result=courseService.getTwoSum(inputString);
 
             return new ResponseEntity<>(result,HttpStatus.OK);
         }
+
+    @PostMapping(path="/checkTwoSum", produces= "application/json")
+        public ResponseEntity<int[]> checkTwoSum( @RequestBody TwoSum twoSum){
+
+        int[] result=courseService.checkTwoSum(twoSum.getArr(),twoSum.getTarget());
+
+        return new ResponseEntity<int[]>(result,HttpStatus.OK);
+    }
 
 
 //    @GetMapping(path = "/api/course/findAllCourses", produces = "application/json")

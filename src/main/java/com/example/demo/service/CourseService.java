@@ -27,7 +27,10 @@ public class CourseService {
     }
 
     public int[] getTwoSum(String target){
-        return courseRepository.twoSum(target);
+        return courseRepository.getTwoSum(target);
     }
+
+    public int[] checkTwoSum(Integer[] inputArray,Integer target) { return courseRepository.checkTwoSum(inputArray,target);}
+
 
 }

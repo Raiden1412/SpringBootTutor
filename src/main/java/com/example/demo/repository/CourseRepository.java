@@ -9,12 +9,10 @@ import java.util.*;
 @Repository
 public class CourseRepository {
     List<Course> courses = new ArrayList<>();
-    int[] arr;
-    int len;
 
     // constructor
     public CourseRepository() {
-        arr=new int[]{2, 7, 11, 15};
+
 
         Course javaOne = Course.builder()
                 .className("Java I")
@@ -34,15 +32,31 @@ public class CourseRepository {
         courses.add(javaOne);
     }
 
-    public int[] twoSum(String target){
+    public int[] getTwoSum(String target){
+        int[] arr=new int[]{2, 7, 11, 15};
         int targetInt=Integer.parseInt(target);
         Map<Integer,Integer> map=new HashMap<>();
-        for(int i=0;i<this.arr.length;i++){
-            if(map.containsKey(targetInt-arr[i])){
+        for(int i=0;i<arr.length;i++){
+            if(!map.containsKey(targetInt-arr[i])){
                 map.put(arr[i],i);
             }else{
                 return new int[]{map.get(targetInt-arr[i]),i};
             }
+        }
+        return new int[]{-1,-1};
+    }
+
+    public int[] checkTwoSum(Integer[] inputArray,Integer target){
+        if(inputArray==null||inputArray.length==0||target==null) return new int[]{-1,-1};
+
+        Map<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<inputArray.length;i++){
+            if(!map.containsKey(target-inputArray[i])){
+                map.put(inputArray[i],i);
+            }else{
+                return new int[]{map.get(target-inputArray[i]),i};
+            }
+
         }
         return new int[]{-1,-1};
     }
